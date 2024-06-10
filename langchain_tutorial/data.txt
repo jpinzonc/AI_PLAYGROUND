@@ -1,0 +1,28 @@
+Researchers unveiled the world’s first wooden satellite last month, billing it as clearing a path for more uses of wood in outer space. The material will be more sustainable and less polluting than the metals used in conventional satellites, they say.
+
+Researchers at Kyoto University in Japan and the Tokyo-based logging company Sumitomo Forestry showed off the satellite, called LignoSat, in late May. The roughly 10-centimetre-long cube is made of magnolia-wood panels and has an aluminium frame, solar panels, circuit boards and sensors. The panels incorporate Japanese wood-joinery methods that do not rely on glue or metal fittings.
+
+Wood might seem counterintuitive for use in space because it is combustible — but that feature can be desirable. To curb the growing problem of space junk threatening spacecraft and space stations, rocket stages and satellites are deliberately plunged into the Earth’s atmosphere to burn up. But during combustion, they release particles of aluminium and other metals. Many more spacecraft launches are planned, and scientists have warned that the environmental effects of this pollution are unknown.
+
+When LignoSat plunges back to Earth, after six months to a year of service, the magnolia will incinerate completely and release only water vapour and carbon dioxide, says Takao Doi, an astronaut and engineer at Kyoto University, who is part of the research team. He points to other benefits of wood: it’s resilient in the harsh environment of space and does not block radio waves, making it suitable for enclosing an antenna.
+
+And there is a precedent for spacecraft with wooden parts. Launched in 1962, NASA’s Ranger 3 lunar probe had a balsa-wood casing intended to protect its capsule as it landed on the lunar surface (the probe malfunctioned, missed the Moon and began orbiting the Sun).
+
+Timber pioneers
+LignoSat will cost about US$191,000 to design, manufacture, launch and operate. Sensors onboard will evaluate strain on the wood, temperature, geomagnetic forces and cosmic radiation, as well as receive and transmit radio signals. The satellite has been handed over to the Japan Aerospace Exploration Agency (JAXA) and will be transferred to the International Space Station in September, before being launched into orbit in November.
+
+Growth has been slow for the project, which began in 2020 with speculation about the wider potential for wood in space for better sustainability.
+
+“In our first conversations, Dr Doi proposed we build wooden housing on the Moon,” says team member Koji Murata at the biomaterials-design laboratory at Kyoto University’s Graduate School of Agriculture. “We have also discussed the possibility of building domes on Mars out of wood in order to grow timber forests.”
+
+Martian and lunar colonists, like all pioneers, would have to make use of local materials — regolith (rocky material on the surface), silicon dioxide and other minerals, in the case of Mars. But wood could play a part in crafting temporary or permanent shelters. Murata points to plans by JAXA and industrial partners to develop shelters made partly of wood that could be used in Antarctica or on the Moon.
+
+“The natural radiation-shielding properties of wood could be used effectively to design walls or outer shells of space habitats to provide protection,” says Nisa Salim, who specializes in engineered materials at Swinburne University of Technology in Melbourne, Australia, and is not part of the project. “Wood is an effective insulator, capable of regulating temperature and minimizing heat transfer to maintain a comfortable indoor environment. Wood is easy to work with, renewable and biodegradable, aligning with sustainability goals for space exploration.”
+
+Salim noted that the structural integrity, safety and longevity of wood need to be confirmed in space.
+
+Wood consists of cellulose held together by lignin, a kind of organic polymer. That makes it a naturally occurring member of the class of materials known as composites, says Scott J McCormack, a materials engineer at the University of California, Davis, who is not involved in the project. Composites are often used in the aerospace industry, so he does not find it surprising that their use in satellites might be explored.
+
+“Composites are ideal for the aerospace industry — and also satellites — due to their high strength-to-weight ratio,” says McCormack. But he has doubts about how wood will fare as a structural material on the Moon or Mars. “The first concern that comes to mind is galactic cosmic radiation [GCR] and how it might degrade the mechanical properties of wood over time. GCR isn’t that big of problem for us here on Earth, thanks to our atmosphere.”
+
+But Murata says that the team has studied measurements of GCR and solar energetic particles — high-energy particles that are released from the Sun — taken by NASA’s Curiosity rover on Mars, as well as the effects of gamma rays on wood on Earth. He thinks that wood on Mars could potentially last for thousands of years. “Radiation on Mars is a big problem for living organisms, including humans,” he says. “I don't think this is going to be much of an issue for wood.”
