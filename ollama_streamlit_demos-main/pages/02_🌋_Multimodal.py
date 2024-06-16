@@ -14,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-
 def img_to_base64(image):
     """
     Convert an image to base64 format.
@@ -28,7 +27,6 @@ def img_to_base64(image):
     image.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
 
-
 def get_allowed_model_names(models_info: dict) -> tuple:
     """
     Returns a tuple containing the names of the allowed models.
@@ -39,7 +37,6 @@ def get_allowed_model_names(models_info: dict) -> tuple:
         for model in allowed_models
         if model in [m["name"] for m in models_info["models"]]
     )
-
 
 def main():
     page_icon("🌋")
