@@ -22,7 +22,6 @@ prompt_template = ChatPromptTemplate.from_messages(
 
 chain = prompt_template | llm
 
-
 def start_app():
     while True:
         question = input("You: ")
