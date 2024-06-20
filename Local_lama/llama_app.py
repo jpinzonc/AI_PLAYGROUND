@@ -67,9 +67,7 @@ def generate_llama3_response(prompt_input, model):
     print(output)
     return output
 
-qa = None 
-prompt = st.chat_input()
-print('UPFILE', uploadedfile)
+
 def get_response_with_document(uploaded_file, prompt, model):
     from langchain.text_splitter import RecursiveCharacterTextSplitter
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
@@ -87,10 +85,16 @@ def get_response_with_document(uploaded_file, prompt, model):
     # Get your docsearch ready
     docsearch = FAISS.from_texts(chunks[:50], embeddings)
     from langchain.chains import RetrievalQA
-    qa = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
+    qa_model = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
     # Run a query
-    result = generate_llama3_response(prompt, qa)
+    result = generate_llama3_response(prompt, qa_model)
     return result
+
+
+
+
+prompt = st.chat_input()
+print('UPFILE', uploadedfile)
 
 # User-provided prompt
 if prompt: #!= st.chat_input():
