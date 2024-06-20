@@ -52,9 +52,9 @@ st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 # Function for generating LLaMA2 response
 # Refactored from https://github.com/a16z-infra/llama2-chatbot
-def generate_llama3_response(prompt_input, llm3):
+def generate_llama3_response(prompt_input, model):
     # This is testing the connetion to the model works: 
-    output = llm3.invoke(prompt_input)
+    output = model.invoke(prompt_input)
     # string_dialogue = "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'."
     # for dict_message in st.session_state.messages:
     #     if dict_message["role"] == "user":
@@ -64,7 +64,8 @@ def generate_llama3_response(prompt_input, llm3):
     # output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', 
     #                        input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ",
     #                               "temperature":0.1, "top_p":0.9, "max_length":512, "repetition_penalty":1})
-    return output.content
+    print(output)
+    return output
 
 qa = None 
 prompt = st.chat_input()
@@ -103,8 +104,10 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Thinking..."):
             if uploadedfile == None: 
                 response = generate_llama3_response(prompt, llm3)
+                response = response.content
             else: 
                 response = get_response_with_document(uploadedfile, prompt, llm3)
+                response = response['result']
             placeholder = st.empty()
             full_response = ''
             for item in response:
