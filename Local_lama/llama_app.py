@@ -11,16 +11,19 @@ from io import StringIO
 # Generate the model
 # llm3 = Ollama(model ='llama3')
 # Modified following https://www.youtube.com/watch?v=02cdCd43Ccc 
-API_KEY = "NA" #Causes ChatOpenAI to look for local models. base-url is needed to use ollama
-Model = 'llama3'
-llm3 = ChatOpenAI(api_key = API_KEY,model= Model, base_url="http://localhost:11434/v1", streaming=True)
+
 # gpt_llm.invoke('what is a bot')
 # App title
 # Change the tile to Llama 3
 # st.set_page_config(page_title="🦙💬 Llama 3 Chatbot - Local with Ollama")
+st.set_page_config(
+    page_title="Talk to your documents",
+    page_icon=":orange_heart:",
+)
+st.title("Talk to your documents locally")
 
 # Replicate Credentials
-with st.sidebar:
+# with st.sidebar:
     #### Remove Replicate secciont
     # st.title('🦙💬 Llama 3 Chatbot')
     # if 'REPLICATE_API_TOKEN' in st.secrets:
@@ -31,9 +34,29 @@ with st.sidebar:
     #     if not (replicate_api.startswith('r8_') and len(replicate_api)==40):
     #         st.warning('Please enter your credentials!', icon='⚠️')
     #     else:
-    st.success('Proceed to entering your prompt message!', icon='👉')
-    uploadedfile = st.file_uploader('upload_a_file')
-
+    # Get LLM model
+llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768"])
+API_KEY = "NA" #Causes ChatOpenAI to look for local models. base-url is needed to use ollama
+if llm_model:
+    llm3 = ChatOpenAI(api_key = API_KEY,model= llm_model, base_url="http://localhost:11434/v1", streaming=True)
+    st.sidebar.success('Proceed to entering your prompt message!', icon='👉')
+    upload = st.sidebar.selectbox("Do you want to add your own documents?", options=["No", 'Yes'])
+    if upload == 'Yes':
+        uploadedfile = st.file_uploader('Upload Documents herez')
+        print('UPFILE', uploadedfile)
+        embeddings_model = st.sidebar.selectbox(
+        "Select Embeddings",
+        options=["nomic-embed-text", "text-embedding-3-small"],
+        help="When you change the embeddings model, the documents will need to be added again.",)
+    prompt = st.chat_input()
+    
+    # # User-provided prompt
+    # if prompt: #!= st.chat_input():
+    #     st.session_state.messages.append({"role": "user", "content": prompt})
+    #     with st.chat_message("user"):
+    #         st.write(prompt)
+else: 
+    st.write('Model not selected')
     # st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-a-llama-2-chatbot/)!')
 # os.environ['REPLICATE_API_TOKEN'] = replicate_api
 
@@ -87,37 +110,35 @@ def get_response_with_document(uploaded_file, prompt, model):
     from langchain.chains import RetrievalQA
     qa_model = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
     # Run a query
-    result = generate_llama3_response(prompt, qa_model)
+    result = generate_llama3_response(prompt, qa)
     return result
 
 
 
 
-prompt = st.chat_input()
-print('UPFILE', uploadedfile)
 
-# User-provided prompt
-if prompt: #!= st.chat_input():
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.write(prompt)
 
-# Generate a new response if last message is not from assistant
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            if uploadedfile == None: 
-                response = generate_llama3_response(prompt, llm3)
-                response = response.content
-            else: 
-                response = get_response_with_document(uploadedfile, prompt, llm3)
-                response = response['result']
-            placeholder = st.empty()
-            full_response = ''
-            for item in response:
-                full_response += item
-                placeholder.markdown(full_response)
-            placeholder.markdown(full_response)
-    message = {"role": "assistant", "content": full_response}
-    st.session_state.messages.append(message)
-    
+# # User-provided prompt
+# if prompt: #!= st.chat_input():
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+#     with st.chat_message("user"):
+#         st.write(prompt)
+
+# # Generate a new response if last message is not from assistant
+# if st.session_state.messages[-1]["role"] != "assistant":
+#     with st.chat_message("assistant"):
+#         with st.spinner("Thinking..."):
+#             if uploadedfile == None: 
+#                 response = generate_llama3_response(prompt, llm3)
+#                 response = response.content
+#             else: 
+#                 response = get_response_with_document(uploadedfile, prompt, llm3)
+#                 response = response['result']
+#             placeholder = st.empty()
+#             full_response = ''
+#             for item in response:
+#                 full_response += item
+#                 placeholder.markdown(full_response)
+#             placeholder.markdown(full_response)
+#     message = {"role": "assistant", "content": full_response}
+#     st.session_state.messages.append(message)
