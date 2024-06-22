@@ -53,12 +53,13 @@ if llm_model:
     st.sidebar.success('Proceed to entering your prompt message!', icon='👉')
     upload = st.sidebar.selectbox("Do you want to add your own documents?", options=["No", 'Yes'])
     if upload == 'Yes':
-        uploadedfile = st.file_uploader('Upload Documents herez')
+        uploadedfile = st.sidebar.file_uploader('Upload Documents')
         print('UPFILE', uploadedfile)
         embeddings_model = st.sidebar.selectbox(
-        "Select Embeddings",
-        options=["nomic-embed-text", "text-embedding-3-small"],
-        help="When you change the embeddings model, the documents will need to be added again.",)
+                                                "Select Embeddings",
+                                                options=["nomic-embed-text", "text-embedding-3-small"],
+                                                help="When you change the embeddings model, the documents will need to be added again.",
+                                                )
     # Store LLM generated responses
     if "messages" not in st.session_state.keys():
         st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
