@@ -1,16 +1,13 @@
 # Adapted from   https://www.youtube.com/watch?v=J8TgKxomS2g
 # and https://github.com/phidatahq/phidata/blob/main/cookbook/llms/groq/rag/app.py
 import streamlit as st
-# Load the model using Ollama from langchain
-from langchain_community.llms import Ollama
-from langchain_openai.chat_models import ChatOpenAI
 import pandas as pd
 from io import StringIO
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
-
+from langchain_community.vectorstores import FAISS
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 st.set_page_config(
     page_title="Llama3: Talk to your documents",
