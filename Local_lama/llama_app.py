@@ -6,6 +6,11 @@ from langchain_community.llms import Ollama
 from langchain_openai.chat_models import ChatOpenAI
 import pandas as pd
 from io import StringIO
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.chains import RetrievalQA
+
 
 st.set_page_config(
     page_title="Llama3: Talk to your documents",
@@ -19,33 +24,27 @@ def clear_chat_history():
 def generate_llama3_response(prompt_input, model):
     # This is testing the connetion to the model works: 
     output = model.invoke(prompt_input)
-    print(output)
+    # print(output)
     return output
 
 def get_response_with_document(uploaded_file, prompt, model, emb_model):
-    from langchain.text_splitter import RecursiveCharacterTextSplitter
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
     spliter = RecursiveCharacterTextSplitter(chunk_size = 200,chunk_overlap = 50)
     chunks = spliter.split_text(string_data)
     #st.write(string_data[:100])
     # print(chunks[:50])
-    from langchain_community.embeddings import OllamaEmbeddings
-    # from langchain.vectorstores import FAISS
-    from langchain_community.vectorstores import FAISS
-    # embeddings = OllamaEmbeddings(base_url = 'http://localhost:11434', model="llama3")
-    #Using nomid-emde-text model allow for faster embedings, the above on llama never finished. 
     embeddings = OllamaEmbeddings(model=emb_model)
     # Get your docsearch ready
     docsearch = FAISS.from_texts(chunks[:50], embeddings)
-    from langchain.chains import RetrievalQA
     qa_model = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
     # Run a query
     result = generate_llama3_response(prompt, qa_model)
     return result
 
-llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768"])
+llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3"])
 API_KEY = "NA" #Causes ChatOpenAI to look for local models. base-url is needed to use ollama
+# llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768"])
 
 if llm_model:
     uploadedfile = None
@@ -54,7 +53,7 @@ if llm_model:
     upload = st.sidebar.selectbox("Do you want to add your own documents?", options=["No", 'Yes'])
     if upload == 'Yes':
         uploadedfile = st.sidebar.file_uploader('Upload Documents')
-        print('UPFILE', uploadedfile)
+        # print('UPFILE', uploadedfile)
         embeddings_model = st.sidebar.selectbox(
                                                 "Select Embeddings",
                                                 options=["nomic-embed-text", "text-embedding-3-small"],
