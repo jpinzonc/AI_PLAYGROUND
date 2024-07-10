@@ -1,11 +1,11 @@
 # AI TEST 
 
-Trying different models and functionality for AI
+Trying different models and functionality for AI. 
+
+Most of the tests are done using LLama3 through Ollama
 
 
 
 
 
 
-find and remove DSSTORE and Pycache 
->> find . | grep -E "(/__pycache__$)"| xargs rm -rf
