@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Project Status Dashboard</h1>
+        <div class="grid">
+            <div class="card">
+                <h2>Project Cost Performance</h2>
+                <canvas id="costPerformanceChart"></canvas>
+                <p>Total Budget: ${{ data.total_budget }}</p>
+                <p>Actual Cost: ${{ data.actual_cost }}</p>
+            </div>
+            <div class="card">
+                <h2>Project Performance</h2>
+                <p>SPI: {{ data.spi }}</p>
+                <p>CPI: {{ data.cpi }}</p>
+                <p>Planned Value: ${{ data.planned_value }}</p>
+                <p>Earned Value: ${{ data.earned_value }}</p>
+            </div>
+            <div class="card">
+                <h2>Time vs Project Phase</h2>
+                <canvas id="timeVsPhaseChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Project Phase % Completed</h2>
+                <canvas id="phaseCompletionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cost Performance Chart
+        new Chart(document.getElementById('costPerformanceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Actual Cost', 'Remaining Budget'],
+                datasets: [{
+                    data: [{{ data.actual_cost }}, {{ data.total_budget - data.actual_cost }}],
+                    backgroundColor: ['#4CAF50', '#FF5722']
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%'
+            }
+        });
+
+        // Time vs Project Phase Chart
+        new Chart(document.getElementById('timeVsPhaseChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ data.time_vs_project_phase.keys() | list | tojson }},
+                datasets: [{
+                    data: {{ data.time_vs_project_phase.values() | list }},
+                    backgroundColor: '#3F51B5'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Project Phase Completion Chart
+        new Chart(document.getElementById('phaseCompletionChart'), {
+            type: 'pie',
+            data: {
+                labels: {{ data.project_phase_completion.keys() | list | tojson }},
+                datasets: [{
+                    data: {{ data.project_phase_completion.values() | list }},
+                    backgroundColor: ['#4CAF50', '#2196F3', '#FFC107', '#9C27B0', '#FF5722']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
