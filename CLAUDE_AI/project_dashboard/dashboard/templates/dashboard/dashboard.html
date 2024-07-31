@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Project Status Dashboard</h1>
+        <div class="project-info">
+            <span>Project Name: {{ project.name }}</span>
+            <span>Project Phase: 2 selected</span>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>Project Cost Performance</h2>
+                <canvas id="costChart"></canvas>
+                <div class="cost-info">
+                    <p>Total Budget: ${{ project.total_budget }}</p>
+                    <p>Actual Cost: ${{ project.actual_cost }}</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Project Performance</h2>
+                <div class="performance-info">
+                    <p>SPI: {{ project.spi }}</p>
+                    <p>CPI: {{ project.cpi }}</p>
+                    <p>Planned Value (PV): ${{ project.planned_value }}</p>
+                    <p>Earned Value (EV): ${{ project.earned_value }}</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Time vs Project Phase</h2>
+                <canvas id="phaseChart"></canvas>
+            </div>
+            
+            <div class="card">
+                <h2>Project Phase % Completed</h2>
+                <canvas id="completionChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'dashboard/js/charts.js' %}"></script>
+</body>
+</html>

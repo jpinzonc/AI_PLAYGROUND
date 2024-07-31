@@ -2,6 +2,8 @@
 
 With this test I wanted to check if Claude can create a full dashboard application from an screenshot. 
 
+Idea taken from : https://www.youtube.com/watch?v=kyMuevbx5VQ
+
 Steps: 
 1. Search in google "Example of a Dashboard". 
 
@@ -26,6 +28,14 @@ Steps:
     6.2. STREAMLIT: 
 
 ![alt text](images/RESULT_STREAMLIT.png "Title")
+
+    6.3. DJANGO: 
+    
+    More complicated and did not result that great. 
+
+    Had to go back and ask to create and populate some of the files. 
+
+![alt text](images/RESULT_DJANGO.png "Title")
 
 
 
