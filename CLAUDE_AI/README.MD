@@ -29,7 +29,7 @@ Steps:
 
 ![alt text](images/RESULT_STREAMLIT.png "Title")
 
-    6.3. DJANGO: 
+    6.3. DJANGO (python manage.py runserver): 
     
     More complicated and did not result that great. 
 
@@ -37,6 +37,11 @@ Steps:
 
 ![alt text](images/RESULT_DJANGO.png "Title")
 
+    6.4. Fast API (python run.py): 
+    
+    More complicated and did not result that great. 
+
+![alt text](images/RESULT_fastAPI.png "Title")
 
 
 

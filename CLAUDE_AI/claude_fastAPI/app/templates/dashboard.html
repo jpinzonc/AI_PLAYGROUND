@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Project Status Dashboard</h1>
+        <div class="project-info">
+            <span>Project Name: {{ project.name }}</span>
+            <span>Project Phase: {{ project.phase }}</span>
+        </div>
+        
+         <div class="grid">
+            <div class="card">
+                <h2>Project Cost Performance</h2>
+                <canvas id="costChart"></canvas>
+                <div class="cost-info">
+                    <p>Total Budget: ${{ "{:,.0f}".format(project.total_budget) }}</p>
+                    <p>Actual Cost: ${{ "{:,.0f}".format(project.actual_cost) }}</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Project Performance</h2>
+                <div class="performance-info">
+                    <p>SPI: {{ project.spi }}</p>
+                    <p>CPI: {{ project.cpi }}</p>
+                    <p>Planned Value (PV): ${{ "{:,.2f}".format(project.planned_value) }}</p>
+                    <p>Earned Value (EV): ${{ "{:,.2f}".format(project.earned_value) }}</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Time vs Project Phase</h2>
+                <canvas id="phaseChart"></canvas>
+            </div>
+            
+            <div class="card">
+                <h2>Project Phase % Completed</h2>
+                <canvas id="completionChart"></canvas>
+            </div> 
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', path='/js/charts.js') }}"></script>
+</body>
+</html>

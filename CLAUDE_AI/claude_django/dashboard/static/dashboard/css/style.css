@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.project-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.cost-info, .performance-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.cost-info p, .performance-info p {
+    margin: 5px 0;
+}
+
+canvas {
+    width: 100% !important;
+    height: 200px !important;
+}
+
+/* Specific styles for Project Performance card */
+.card:nth-child(2) .performance-info {
+    flex-direction: column;
+}
+
+.card:nth-child(2) .performance-info p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card:nth-child(2) .performance-info p:nth-child(1),
+.card:nth-child(2) .performance-info p:nth-child(2) {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card:nth-child(2) .performance-info p:nth-child(1)::after {
+    content: "↓";
+    color: red;
+    margin-left: 10px;
+}
+
+.card:nth-child(2) .performance-info p:nth-child(2)::after {
+    content: "↑";
+    color: green;
+    margin-left: 10px;
+}
+
+/* Time vs Project phase styles */
+.card:nth-child(3) canvas {
+    height: 250px !important;
+}
+
+/* Project Phase % Completed styles */
+.card:nth-child(4) canvas {
+    height: 250px !important;
+}
