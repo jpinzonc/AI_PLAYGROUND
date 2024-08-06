@@ -39,7 +39,7 @@ def get_response_with_document(uploaded_file, prompt, model, emb_model):
     result = generate_llama3_response(prompt, qa_model)
     return result
 
-llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3"])
+llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3", 'codellama'])
 API_KEY = "NA" #Causes ChatOpenAI to look for local models. base-url is needed to use ollama
 # llm_model = st.sidebar.selectbox("Select an LLM: ", options=[None, "llama3", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768"])
 
