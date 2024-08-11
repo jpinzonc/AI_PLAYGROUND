@@ -15,7 +15,14 @@ To access most models it is necesary to have api keys for each LLM provider. Som
 
 3. IMAGE_TO_CODE --> Results from interactions with CLAUDE model, in which an image was provided and it generated code for different apps. 
 
-Most of the tests are done using LLama3 through Ollama
+4. IMPROVE_CODE --> A couple of ways to generate or improve code with LlamaCode and IBM's Granite Code (The latest is very slow*)
+
+
+
+### Most of the tests are done using LLama3 through Ollama
+
+
+*slownest may be the result of my system not having a GPU. 
 
 
 
