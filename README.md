@@ -17,6 +17,11 @@ To access most models it is necesary to have api keys for each LLM provider. Som
 
 4. IMPROVE_CODE --> A couple of ways to generate or improve code with LlamaCode and IBM's Granite Code (The latest is very slow*)
 
+5. LANGCHAIN --> Several notebooks utilizing Langchain tools one way or another. 
+
+6. LLM_PDF_PARSER --> Methods to Parse PDF to Text and ask questions about the documents. 
+
+
 
 
 ### Most of the tests are done using LLama3 through Ollama
