@@ -13,7 +13,7 @@ To access most models it is necesary to have api keys for each LLM provider. Som
 
 2. HUGGING_FACE --> Testing different functionality using HuggingFace interphase. There is IBM granite code there. 
 
-
+3. IMAGE_TO_CODE --> Results from interactions with CLAUDE model, in which an image was provided and it generated code for different apps. 
 
 Most of the tests are done using LLama3 through Ollama
 
