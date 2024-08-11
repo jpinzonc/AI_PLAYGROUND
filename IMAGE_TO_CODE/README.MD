@@ -43,5 +43,7 @@ Steps:
 
 ![alt text](images/RESULT_fastAPI.png "Title")
 
+I tried something similar with Google Gemini, but it asked for more details before doing anything. 
+
 
 
