@@ -24,7 +24,7 @@ To access most models it is necesary to have api keys for each LLM provider. Som
 
 
 
-### Most of the tests are done using LLama3 through Ollama
+### Most of the tests are done using LLama3 on Ollama
 
 
 *slownest may be the result of my system not having a GPU. 
