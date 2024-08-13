@@ -21,6 +21,8 @@ To access most models it is necesary to have api keys for each LLM provider. Som
 
 6. LLM_PDF_PARSER --> Methods to Parse PDF to Text and ask questions about the documents. 
 
+7. TALK_TO_LLAMA_STREAMLIT --> Experiment with both llama and llamacode to QA and document parsing (pdf and txt)
+
 
 
 
