@@ -1,5 +1,6 @@
 import streamlit as st 
 from io import StringIO
+import ollama
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -49,3 +50,8 @@ def get_response_with_document(string_data, prompt, model, emb_model):
     # Run a query
     result = generate_llama3_response(prompt, qa_model)
     return result
+
+def ollama_available_models():
+    models_info = ollama.list()
+    available_models = [m["name"] for m in models_info["models"]]
+    return available_models

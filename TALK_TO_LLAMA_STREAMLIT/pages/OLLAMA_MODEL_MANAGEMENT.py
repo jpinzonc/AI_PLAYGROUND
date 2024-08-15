@@ -1,5 +1,7 @@
+# https://www.youtube.com/watch?v=bAI_jWsLhFM
+# https://github.com/tonykipkemboi/ollama_streamlit_demos/blob/main/pages/02_%F0%9F%8C%8B_Multimodal.py
 import streamlit as st
-import ollama
+import ollama, os
 from time import sleep
 # from utilities.icon import page_icon
 
@@ -9,7 +11,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
 
 def main():
     # page_icon("⚙️")
@@ -68,11 +69,11 @@ SYSTEM You are mario from super mario bros.""",
     st.divider()
 
     st.subheader("Delete Models", anchor=False)
-    models_info = ollama.list()
-    available_models = [m["name"] for m in models_info["models"]]
 
-    if available_models:
-        selected_models = st.multiselect("Select models to delete", available_models)
+    ollama_models = os.getenv('ollama_models')
+    
+    if ollama_models:
+        selected_models = st.multiselect("Select models to delete", ollama_models.split(','))
         if st.button("🗑️ :red[**Delete Selected Model(s)**]"):
             for model in selected_models:
                 try:

@@ -20,8 +20,11 @@ st.set_page_config(
 st.title("Talk to LLAMA locally")
 
 with st.sidebar:
-    llm_model = st.selectbox("Select an LLM: ", options=[None, "llama3", 'codellama'])
-    API_KEY = "NA" # Causes ChatOpenAI to look for local models. base-url is needed to use ollama
+    ollama_models = os.getenv('ollama_models')
+    ollama_models  = ollama_models.split(',')
+    ollama_models.insert(0, None)
+    llm_model = st.selectbox("Select an LLM: ", options= ollama_models)
+    API_KEY = "NA" # Set to NA since we are not using Open AI, but Llama
 
     if llm_model:
         uploadedfile = None
