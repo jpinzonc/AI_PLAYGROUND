@@ -65,7 +65,9 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Thinking..."):
             if uploadedfile == None: 
                 response = generate_llama3_response(prompt, llm3)
+                st.write(response)
                 response = response.content
+
             else: 
                 if uploadedfile.name[-3:]=='pdf':
                     temp_dir = tempfile.mkdtemp()
@@ -73,12 +75,17 @@ if st.session_state.messages[-1]["role"] != "assistant":
                     with open(path, "wb") as f:
                         f.write(uploadedfile.getvalue())
                     string_data = LlamaParse(api_key=llama_parser, result_type="markdown").load_data(path)
-                    string_data = string_data[0].text
+                    if string_data == []:
+                        st.error('Document appears to be empty')
+                        string_data = ''
+                    else: 
+                        string_data = string_data[0].text
                 else: 
                     stringio = StringIO(uploadedfile.getvalue().decode("utf-8"))
                     string_data = stringio.read()
                 response = get_response_with_document(string_data, prompt, llm3, embeddings_model)
-                response = response['result']
+                if response !=  'No Data':
+                    response = response['result']
             placeholder = st.empty()
             full_response = ''
             for item in response:

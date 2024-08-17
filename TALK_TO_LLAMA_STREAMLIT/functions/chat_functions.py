@@ -39,17 +39,20 @@ def get_response_with_document(string_data, prompt, model, emb_model):
     Returns:
         str: The response to the given prompt.
     '''
-    spliter = RecursiveCharacterTextSplitter(chunk_size = 200,chunk_overlap = 50)
-    chunks = spliter.split_text(string_data)
-    #st.write(string_data[:100])
-    # print(chunks[:50])
-    embeddings = OllamaEmbeddings(model=emb_model)
-    # Get your docsearch ready
-    docsearch = FAISS.from_texts(chunks[:50], embeddings)
-    qa_model = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
-    # Run a query
-    result = generate_llama3_response(prompt, qa_model)
-    return result
+    if string_data == '':
+        return 'No Data'
+    else: 
+        spliter = RecursiveCharacterTextSplitter(chunk_size = 200,chunk_overlap = 50)
+        chunks = spliter.split_text(string_data)
+        #st.write(string_data[:100])
+        # print(chunks[:50])
+        embeddings = OllamaEmbeddings(model=emb_model)
+        # Get your docsearch ready
+        docsearch = FAISS.from_texts(chunks, embeddings)
+        qa_model = RetrievalQA.from_chain_type(llm=model, chain_type="stuff", retriever=docsearch.as_retriever())
+        # Run a query
+        result = generate_llama3_response(prompt, qa_model)
+        return result
 
 def ollama_available_models():
     models_info = ollama.list()
