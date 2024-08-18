@@ -10,11 +10,11 @@ Used claude, gemini, and meta.ai for this purpose.
 
     This is the original image: 
 
-![alt text](claude/original.png "Title")
+![alt text](CLAUDE/original.png "Title")
 
     and this is the output: 
 
-![alt text](claude/final.png "Title")
+![alt text](CLAUDE/final.png "Title")
 
 - I was also able to ask for a few corrections, but the free program is limited. 
 
