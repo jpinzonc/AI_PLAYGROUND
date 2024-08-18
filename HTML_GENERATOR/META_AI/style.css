@@ -1,0 +1,103 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 10px; /* Add margin to the body */
+	padding: 5px; /* Add padding to the body */
+}
+/*  */
+button, input, p {
+	margin-left: 20px; /* Add margin to the left of buttons, inputs, and paragraphs */
+}
+
+.content {
+	margin-left: 20px; /* Add margin to the left of the content, equal to the width of the sidebar */
+}
+.container {
+	display: flex;
+	min-height: 100vh;
+}
+.sidebar {
+	width: 250px;
+	background-color: #f0f2f6;
+	padding: 20px;
+	border-right: 1px solid #ddd;
+	transition: width 0.2s ease;
+	min-height: calc(100vh - 80px); /* Subtract margin from viewport height */
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	z-index: 1;
+	margin-right: 20px; /* Add margin to the right of the sidebar */
+}
+.sidebar.hidden {
+	width: 40px;
+	padding: 10px;
+}
+.sidebar.hidden .sidebar-content {
+	display: none;
+}
+.toggle-sidebar-btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 24px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1;
+}
+.toggle-sidebar-btn::before {
+	content: '<';
+}
+.sidebar.hidden .toggle-sidebar-btn::before {
+	content: '>';
+}
+.sidebar-content {
+	flex-grow: 1;
+	padding-bottom: 50px;
+}
+.theme-toggle-btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	position: absolute;
+	top: 10px;
+	right: 260px;
+}
+.footer-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
+}
+.footnote {
+	font-size: 12px;
+	color: #666;
+	text-align: center;
+	padding: 10px;
+	background-color: #f0f2f6;
+	border-top: 1px solid #ddd;
+}
+.dark-mode {
+	background-color: #333;
+	color: #fff;
+}
+.dark-mode .sidebar {
+	background-color: #444;
+	border-right: 1px solid #555;
+}
+.dark-mode .header {
+	background-color: #555;
+	border-bottom: 1px solid #666;
+}
+.dark-mode .footnote {
+	background-color: #444;
+	border-top: 1px solid #555;
+}
+.user-identification-container {
+	margin-top: 20px;
+}
+.user-identification-container .add-btn {
+	margin-top: 10px;
+}
