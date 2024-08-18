@@ -2,7 +2,6 @@
 
 Used claude, gemini, and meta.ai for this purpose.
 
-
 ## Claude: 
 
 - With claude I provided an image and ask: 
