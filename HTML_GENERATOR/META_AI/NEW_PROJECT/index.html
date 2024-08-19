@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My new page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img id="moon-icon" src="https://cdn-icons-png.flaticon.com/512/1249/1249564.png" alt="" class="svg-icon">
+        <span class="toggle-theme">Light</span>
+        <h1>My new page</h1>
+
+    </div>
+
+    <!-- Drawer Section -->
+    <div class="drawer-container">
+        <div id="drawer" class="drawer">
+            <div class="header-section">
+                <button id="close-btn" class="drawer-toggle"> > </button>
+            </div>
+            <ul class="menu">
+                <li> Item 1</li>
+                <li> Item 2</li>
+                <li> Item 3</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Body Section -->
+    <div id="main" class="body">
+        <h1 id="heading">My new page App Drawer and Toggle theme example. This will generate based on the number input in front of Name and ID Text inputs..</h1>
+        <input type="text" value="Number to show 2 textinputs as name and id" oninput="updateCount()" placeholder="Enter a Number..">
+        <div class="sidebar-toggle button-group">
+            <span id="toggle-text">Hide Sidebar</span><button class="close-drawer drawer-toggle"> < </button>
+        </div>
+
+        <!-- Main Section Content -->
+        <div id="content" class="main-content"></div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer-container">
+        <p class="mLFooter"> ML Footer
+            <span>|</span>
+
+        </p>
+        <button class="btn-toggle-modes btn-icon" style="float: right;"> toggle modes</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mjs-ml-core@3.2.1/dist/ml-core.min.js"></script>
+    <!-- Script tag for the ML Footer -->
+    <script src="script.js"></script>
+
+</body>
+</html>
