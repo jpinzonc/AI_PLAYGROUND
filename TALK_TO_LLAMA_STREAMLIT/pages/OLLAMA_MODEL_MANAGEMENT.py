@@ -70,7 +70,7 @@ SYSTEM You are mario from super mario bros.""",
 
     st.subheader("Delete Models", anchor=False)
 
-    ollama_models = os.getenv('ollama_models')
+    ollama_models = os.getenv('all_models')
     
     if ollama_models:
         selected_models = st.multiselect("Select models to delete", ollama_models.split(','))

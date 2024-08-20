@@ -5,6 +5,9 @@ This application allows users to upload a PDF, process it,
 and then ask questions about the content using a selected language model.
 """
 
+import nltk
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
 import streamlit as st
 import logging
 import os
@@ -27,7 +30,7 @@ from typing import List, Tuple, Dict, Any, Optional
 # Streamlit page configuration
 st.set_page_config(
     page_title="Ollama PDF RAG Streamlit UI",
-    page_icon="🎈",
+    page_icon='tiger',
     layout="wide",
     initial_sidebar_state="collapsed",
 )
