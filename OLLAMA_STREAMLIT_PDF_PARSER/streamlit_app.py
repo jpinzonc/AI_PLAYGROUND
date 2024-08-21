@@ -113,7 +113,7 @@ def process_question(question: str, vector_db: Chroma, selected_model: str) -> s
     """
     logger.info(f"""Processing question: {
                 question} using model: {selected_model}""")
-    llm = ChatOllama(model=selected_model, temperature=0)
+    llm = ChatOllama(model=selected_model, temperature=0, top_p = 0)
     QUERY_PROMPT = PromptTemplate(
         input_variables=["question"],
         template="""You are an AI language model assistant. Your task is to generate 3

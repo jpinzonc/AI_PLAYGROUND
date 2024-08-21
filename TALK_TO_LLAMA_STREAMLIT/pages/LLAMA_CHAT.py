@@ -6,6 +6,7 @@ from functions.chat_functions import *
 import pandas as pd
 from io import StringIO
 from langchain_openai.chat_models import ChatOpenAI
+
 import tempfile
 import sys, os
 from llama_parse import LlamaParse 
