@@ -18,9 +18,13 @@ st.set_page_config(
     page_title="Llama3: Talk to LLAMA",
     page_icon="shark",
 )
+def delete_string():
+    try: 
+        del st.session_state.string_data
+    except: 
+        print('Nothing to delete')
 
 st.header(":flag-co: Talk to LLAMA locally", divider="gray", anchor=False)
-
 
 with st.sidebar:
     ollama_models = os.getenv('ollama_models')
@@ -28,29 +32,31 @@ with st.sidebar:
     ollama_models.insert(0, None)
     llm_model = st.selectbox("Select an LLM: ", options= ollama_models)
     API_KEY = "NA" # Set to NA since we are not using Open AI, but Llama
-
-    if llm_model:
-        uploadedfile = None
-        llm3 = ChatOpenAI(api_key = API_KEY, model= llm_model, base_url="http://localhost:11434/v1"
-                          , streaming=True, temperature = 0, top_p = 0.5)
-        st.success('Proceed to entering your prompt message!', icon='👉')
-        # upload = st.selectbox("Do you want to add your own documents?", options=["No", 'Yes'])
-        # if upload == 'Yes':
-        uploadedfile = st.file_uploader('Upload Documents', type=["pdf", 'md', 'txt'], accept_multiple_files=False)
-        
-        embeddings_model = st.selectbox(
+    if llm_model: 
+        st.success('Start a conversation', icon='👉')
+        st.success('Or select other options', icon= '👇')
+        uploadedfile = st.file_uploader('Upload Documents', type=["pdf", 'md', 'txt'], accept_multiple_files=False, on_change = delete_string, help='Upon change the process restarts')
+        embeding_models = os.getenv('embed_models').split(',')
+        if len(embeding_models) > 1:
+            embeddings_model = st.selectbox(
                                         "Select Embeddings",
                                         options=os.getenv('embed_models').split(','),
                                         help="When you change the embeddings model, the documents will need to be added again.",
                                         )
-
-    else: 
-        uploadedfile = None
-        st.info('Model not selected')
-    
-    if 'string_data' in st.session_state:
+        else: 
+            embeddings_model = embeding_models[0]
+            st.info(f'''For embedings, using: 
+                    **{embeddings_model}**''')
+        
         if uploadedfile == None:
-            st.session_state.string_data = None
+            delete_string()
+        
+        with st.expander(f'Fine Tune Model {llm_model}'):
+            temp = st.slider('Temperature', min_value = 0.0, max_value = 2.0, step = 0.01, value = 0.5)
+            top_p = st.slider('Top_P', min_value = 0.0, max_value = 1.0, step = 0.01, value = 0.5)
+            llm3 = ChatOpenAI(api_key = API_KEY, model= llm_model, base_url="http://localhost:11434/v1"
+                        , streaming=True, temperature = temp, top_p = top_p)
+
     # Store LLM generated responses
     st.button('CLEAR CHAT', on_click = clear_chat_history, use_container_width=True)  
 # Display or clear chat messages
@@ -58,7 +64,8 @@ with st.sidebar:
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "WHAT DO YOU WANT TO TALK ABOUT?"}]
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    avatar = "🤖" if message["role"] == "assistant" else "😎"
+    with st.chat_message(message["role"], avatar=avatar):
         st.write(message["content"])  
 
 prompt = st.chat_input(placeholder = 'Enter your question here!')
@@ -112,3 +119,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
             placeholder.markdown(full_response)
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
+
+# else: 
+#     uploadedfile = None
+#     st.info('Model not selected - Select a model to start')
