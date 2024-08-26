@@ -11,7 +11,34 @@ def clear_chat_history():
     Resets the session_state of the application to original. 
     '''
     st.session_state.messages = [{"role": "assistant", "content": "WHAT DO YOU WANT TO TALK ABOUT?"}]
-    st.session_state.string_data = None
+    st.session_state.file = None
+    try: 
+        del st.session_state.file_uploader_key 
+    except: 
+        pass
+    try: 
+        del st.session_state.uploaded_files
+    except: 
+        pass
+    try: 
+        del st.session_state.string_data
+    except: 
+        pass
+    try: 
+        del st.session_state.image_data
+    except: 
+        pass
+    try: 
+        st.session_state["file_uploader_key"] += 1
+        
+    except: 
+        pass
+
+def delete_string():
+    try: 
+        del st.session_state.string_data
+    except: 
+        print('Nothing to delete')
 
 def generate_llama3_response(prompt_input, model):
     '''
