@@ -17,12 +17,12 @@ st.set_page_config(
     page_icon="shark",
 )
 
-st.header(":flag-co: Talk to LLAMA locally", divider="gray", anchor=False)
+st.header(":stflag-co: Talk to LLAMA locally", divider="gray", anchor=False)
 
 with st.sidebar:
     textext = ["pdf", 'md', 'txt']
     imgext = ['png', 'jpg', 'jpeg']
-    st.write(st.session_state)
+    # st.write(st.session_state)
     ollama_models = os.getenv('ollama_models')
     ollama_models  = ollama_models.split(',')
     ollama_models.insert(0, None)
@@ -72,7 +72,7 @@ with st.sidebar:
                         , streaming=True, temperature = temp, top_p = top_p)
 
     # Store LLM generated responses
-    st.button('CLEAR CHAT', on_click = clear_chat_history, use_container_width=True)  
+    st.button('CLEAR CHAT', on_click = clear_chat_history, use_container_width=True, help = 'Removes all chat messages, images, and text data')  
 # Display or clear chat messages
 
 if "messages" not in st.session_state.keys():

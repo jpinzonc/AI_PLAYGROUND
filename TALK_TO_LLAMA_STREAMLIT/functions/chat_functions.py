@@ -7,32 +7,38 @@ from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 
 def clear_chat_history():
-    '''
-    Resets the session_state of the application to original. 
-    '''
+    """
+    Resets the chat history and session state to its original state.
+
+    This function clears all messages, resets file-related variables,
+    deletes specific session state keys, and increments or initializes
+    the file uploader key. The resulting state is equivalent to a fresh
+    application start.
+
+    Note: This function modifies the session state directly.
+    """
+    # Reset messages to a default assistant message
     st.session_state.messages = [{"role": "assistant", "content": "WHAT DO YOU WANT TO TALK ABOUT?"}]
+
+    # Clear file-related variables
     st.session_state.file = None
-    try: 
-        del st.session_state.file_uploader_key 
-    except: 
+
+    # Try to delete specific session state keys (ignore if they don't exist)
+    for key in ["string_data", "image_data"]:
+        try:
+            if key in st.session_state:
+                del st.session_state[key]
+        except KeyError:
+            pass
+
+    # Increment file uploader key (if it exists) or create a new one
+    try:
+        if 'file_uploader_key' in st.session_state:
+            st.session_state["file_uploader_key"] += 1
+            st.rerun()
+    except AttributeError:
         pass
-    try: 
-        del st.session_state.uploaded_files
-    except: 
-        pass
-    try: 
-        del st.session_state.string_data
-    except: 
-        pass
-    try: 
-        del st.session_state.image_data
-    except: 
-        pass
-    try: 
-        st.session_state["file_uploader_key"] += 1
-        
-    except: 
-        pass
+
 
 def delete_string():
     try: 
@@ -88,3 +94,32 @@ def ollama_available_models():
     models_info = ollama.list()
     available_models = [m["name"] for m in models_info["models"]]
     return available_models
+
+
+# def clear_chat_history():
+#     '''
+#     Resets the session_state of the application to original. 
+#     '''
+#     st.session_state.messages = [{"role": "assistant", "content": "WHAT DO YOU WANT TO TALK ABOUT?"}]
+#     st.session_state.file = None
+#     try: 
+#         del st.session_state.file_uploader_key 
+#     except: 
+#         pass
+#     try: 
+#         del st.session_state.uploaded_files
+#     except: 
+#         pass
+#     try: 
+#         del st.session_state.string_data
+#     except: 
+#         pass
+#     try: 
+#         del st.session_state.image_data
+#     except: 
+#         pass
+#     try: 
+#         st.session_state["file_uploader_key"] += 1
+        
+#     except: 
+#         pass
