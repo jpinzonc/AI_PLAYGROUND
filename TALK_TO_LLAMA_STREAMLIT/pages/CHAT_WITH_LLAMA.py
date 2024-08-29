@@ -5,6 +5,7 @@ from functions.chat_functions import *
 import pandas as pd
 from io import StringIO
 from langchain_openai.chat_models import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 import tempfile
 import sys, os
 from llama_parse import LlamaParse 
@@ -18,7 +19,8 @@ st.set_page_config(
 )
 
 st.header(":stflag-co: Talk to LLAMA locally", divider="gray", anchor=False)
-
+if 'history' not in st.session_state:
+        st.session_state.history = []
 with st.sidebar:
     textext = ["pdf", 'md', 'txt']
     imgext = ['png', 'jpg', 'jpeg']
@@ -99,15 +101,15 @@ if st.session_state.messages[-1]["role"] != "assistant":
         # st.write(dataimg,datatext)
         with st.spinner("Thinking..."):
             if dataimg:
-                st.success('Loading image description')
+                # st.success('Loading image description')
                 if 'image_data' in st.session_state:
-                    st.success('IMAGE_DATA_EXISTS')
+                    # st.success('IMAGE_DATA_EXISTS')
                     image_data = st.session_state.image_data
                     st.write(image_data)
                     response = generate_llama3_response(prompt + image_data, llm3)
                     response = response.content
                 else: 
-                    st.success('NEW_IMAGE_DATA_')
+                    # st.success('NEW_IMAGE_DATA_')
                     temp_dir = tempfile.mkdtemp()
                     path = os.path.join(temp_dir, uploadedfile.name)
                     with open(path, "wb") as f:
@@ -152,10 +154,25 @@ if st.session_state.messages[-1]["role"] != "assistant":
                 if 'string_data' not in st.session_state or st.session_state.string_data == None:
                     st.session_state.string_data = string_data                           
             else:
+                
+                # Create a MessagesPlaceholder for the chat history
+                history_placeholder = MessagesPlaceholder("history")
+                # Construct the prompt template
+                prompt_template = ChatPromptTemplate.from_messages([
+                    ("system", "You are a helpful assistant."),
+                    history_placeholder,
+                    ("human", "{question}")
+                ])
+                # Invoke the template with chat history and a new question
+                question = prompt_template.invoke({
+                    "history": st.session_state.history,
+                    "question": {prompt}
+                })
+
                 if prompt == defprompt: 
                     st.info('Do you know why they are cool?')
                     # st.success('GENERANDO RESPUESTA')
-                response = generate_llama3_response(prompt, llm3)
+                response = generate_llama3_response(question, llm3)
                 response = response.content
             
             if response !=  'No Data':
@@ -171,7 +188,9 @@ if st.session_state.messages[-1]["role"] != "assistant":
             placeholder.markdown(full_response)
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
-
+    value = [item['role']+": "+item['content'] for item in st.session_state.messages]
+    # value = '-'.join(value)
+    st.session_state.history = value
 # else: 
 #     uploadedfile = None
 #     st.info('Model not selected - Select a model to start')

@@ -57,7 +57,9 @@ def generate_llama3_response(prompt_input, model):
     Returns: 
          str: output as the final result of the function.
     '''
-    output = model.invoke(prompt_input)
+    output = model.invoke(prompt_input)#+" Use the following history of the conversation ONLY if the user asks for it: " + st.session_state.history )
+    # output = model.invoke(prompt_input+" Use the following history of the conversation ONLY if the user asks for it: " + st.session_state.history )
+
     return output
 
 def get_response_with_document(string_data, prompt, model, emb_model):
