@@ -146,6 +146,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
                         for i, str_ in enumerate(string_data):
                             string_dataf = string_dataf + string_data[i].text
                         string_data = string_dataf
+                
                 else: 
                     # st.success('TXT')
                     stringio = StringIO(uploadedfile.getvalue().decode("utf-8"))
