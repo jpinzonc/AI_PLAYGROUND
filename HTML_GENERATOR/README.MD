@@ -55,4 +55,4 @@ Still a WIP, but it was nice to be able to interact with the LLM and improve the
 
 - Same question as Meta, but the reponse was a general code with no specific format. 
 
-
+This functionality is in TALK_TO_LLAMA_STRAMLIT
