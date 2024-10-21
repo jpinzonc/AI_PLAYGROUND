@@ -8,7 +8,31 @@
 6. Incude a chat for ollama3
 7. include ollama locally
 8. Can you increase the size of the chat box and add purple coloring scheme
-9. 
+
+
+## TO USE THE APPLICATION: 
+
+Make sure to creare the following structure: 
+
+your_project_folder/
+├── app.py
+├── static/
+│   └── styles.css
+└── templates/
+    ├── layout.html
+    ├── index.html
+    └── about.html
+
+
+Copy the contents on the approppriate files 
+
+Navegate to the root of the above folder. 
+
+Enter: 
+
+```python app.py``` 
+
+That is it! 
 
 
 

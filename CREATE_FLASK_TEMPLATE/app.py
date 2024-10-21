@@ -22,7 +22,7 @@ def ask():
     user_message = request.json['message']
     
     try:
-        response = ollama.chat(model='llama3.1', messages=[
+        response = ollama.chat(model='llama3.2', messages=[
             {
                 'role': 'user',
                 'content': user_message,
