@@ -14,6 +14,7 @@
 
 Make sure to creare the following structure: 
 
+```
 your_project_folder/
 ├── app.py
 ├── static/
@@ -22,7 +23,7 @@ your_project_folder/
     ├── layout.html
     ├── index.html
     └── about.html
-
+```
 
 Copy the contents on the approppriate files 
 
