@@ -12,7 +12,7 @@
 
 ## TO USE THE APPLICATION: 
 
-Make sure to creare the following structure: 
+Make sure to create the following structure: 
 
 ```
 your_project_folder/
