@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}Home{% endblock %}
+
+{% block content %}
+    <h2>Welcome to my Flask app!</h2>
+    <p>This is the home page of my Flask application.</p>
+    <p>Today's date is: {{ current_date | format_date }}</p>
+{% endblock %}
