@@ -1,11 +1,51 @@
 {% extends "layout.html" %}
-
 {% block title %}Home{% endblock %}
-
-{% block header %}Home{% endblock %}
-
 {% block content %}
-    <h2>Welcome to my Flask app!</h2>
-    <p>This is the home page of my Flask application.</p>
-    <p>Today's date is: {{ current_date | format_date }}</p>
+<div class="container">
+    <div class="streamlit-header">
+        <h1>Welcome to Flask Ollama</h1>
+        <p class="subtitle">A Streamlit-inspired interface for local LLM interactions</p>
+    </div>
+
+    <div class="metric-cards">
+        <div class="metric-card">
+            <h3>Model</h3>
+            <div class="metric-value">llama2</div>
+        </div>
+        <div class="metric-card">
+            <h3>Status</h3>
+            <div class="metric-value">Online</div>
+        </div>
+        <div class="metric-card">
+            <h3>Response Time</h3>
+            <div class="metric-value">~2s</div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="expander">
+            <div class="expander-header" onclick="toggleExpander(this)">
+                <h2>📌 Features</h2>
+                <span class="expander-icon">▼</span>
+            </div>
+            <div class="expander-content">
+                <ul class="feature-list">
+                    <li>Real-time chat with local Ollama models</li>
+                    <li>Adjustable model parameters</li>
+                    <li>Streamlit-inspired interface</li>
+                    <li>Markdown support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleExpander(element) {
+    const content = element.parentElement.querySelector('.expander-content');
+    const icon = element.querySelector('.expander-icon');
+    content.classList.toggle('expanded');
+    icon.textContent = content.classList.contains('expanded') ? '▼' : '▶';
+}
+</script>
 {% endblock %}

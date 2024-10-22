@@ -34,3 +34,10 @@ Enter:
 ```python app.py``` 
 
 That is it! 
+
+
+
+
+
+1. Create a Python Flask application as a template, Include .html, .css, and some template specific functions in the folder functions. Add content to the html files using a layout that recreates an streamlit page, include a layout.hml, include a chat for ollama3. use ollama locally
+8. Can you increase the size of the chat box and add purple coloring scheme
