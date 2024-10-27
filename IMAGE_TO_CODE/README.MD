@@ -1,10 +1,11 @@
 # Using Claude to generate a dashboard from an screenshot
 
-With this test I wanted to check if Claude can create a full dashboard application from an screenshot. 
+With this test, I wanted to check if Claude can create a full dashboard application from an screenshot. 
 
 Idea taken from : https://www.youtube.com/watch?v=kyMuevbx5VQ
 
 Steps: 
+
 1. Search in google "Example of a Dashboard". 
 
 2. Take an screenshot of any example 
