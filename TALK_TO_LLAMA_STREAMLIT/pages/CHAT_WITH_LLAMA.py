@@ -2,6 +2,7 @@
 # and https://github.com/phidatahq/phidata/blob/main/cookbook/llms/groq/rag/app.py
 import streamlit as st
 from functions.chat_functions import *
+from functions.auxiliary_functions import *
 import pandas as pd
 from io import StringIO
 from langchain_openai.chat_models import ChatOpenAI
@@ -81,7 +82,7 @@ if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", 
                                   "content": "WHAT DO YOU WANT TO TALK ABOUT?"}]
 for message in st.session_state.messages:
-    avatar = "🤖" if message["role"] == "assistant" else "😎"
+    avatar = byteiogenerator('images/Shark_emoji.gif') if message["role"] == "assistant" else "😎"
     with st.chat_message(message["role"], avatar=avatar):
         st.write(message["content"])  
 
@@ -89,7 +90,7 @@ prompt = st.chat_input(placeholder = 'Enter your question here!')
 # User-provided prompt
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    with st.chat_message("user" ):
         st.write(prompt)
     defprompt = None
 else: 
@@ -97,7 +98,7 @@ else:
     
 # Generate a new response if last message is not from assistant
 if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant",  avatar =  byteiogenerator('images/scroll.gif')):
         # st.write(dataimg,datatext)
         with st.spinner("Thinking..."):
             if dataimg:
